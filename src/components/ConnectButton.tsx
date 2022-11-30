@@ -14,14 +14,12 @@ const ConnectButton: FC = () => {
   });
   const [balance, setBalance] = useState<string>();
 
-  const getGotchis = async () => {
+  const getBalance = async () => {
     if (!address) return;
     const response = await fetch(`/api/balance?address=${address}`)
       .then((response) => response.json())
       .catch((err) => console.error(err));
 
-    console.log(response.data);
-    console.log(response.data?.items[0].balance);
     const _balance = ethers.utils.formatEther(
       BigNumber.from(response.data?.items[0].balance)
     );
@@ -30,7 +28,7 @@ const ConnectButton: FC = () => {
   };
 
   useEffect(() => {
-    getGotchis();
+    getBalance();
   }, [address]);
 
   if (domLoaded && isConnected)
@@ -40,7 +38,14 @@ const ConnectButton: FC = () => {
       </div>
     );
 
-  return <button className="bg-primary px-2 py-1 text-neutral-dark" onClick={() => connect()}>Connect Wallet</button>;
+  return (
+    <button
+      className="bg-primary px-2 py-1 text-neutral-dark"
+      onClick={() => connect()}
+    >
+      Connect Wallet
+    </button>
+  );
 };
 
 export default ConnectButton;

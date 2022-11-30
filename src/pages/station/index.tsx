@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
-import CardList from "../components/CardList";
-import Navbar from "../components/Navbar";
+import CardList from "../../components/CardList";
+import Navbar from "../../components/Navbar";
 
 const Station: NextPage = () => {
   return (
