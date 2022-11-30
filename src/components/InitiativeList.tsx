@@ -26,15 +26,13 @@ const InitiativeList: FC = () => {
   const { chain, chains } = useNetwork();
   const provider = useProvider();
 
-  if (domLoaded)
+  if (domLoaded && isConnected)
     return (
       <>
-        {isConnected && (
-          <div>
-            Connected to {ensName ?? address}. with balance: {data?.formatted}
-            .connected to {chain?.name},with provider: {provider.network.name},
-          </div>
-        )}
+        <div>
+          Connected to {ensName ?? address}. with balance: {data?.formatted}
+          .connected to {chain?.name},with provider: {provider.network.name},
+        </div>
       </>
     );
 
