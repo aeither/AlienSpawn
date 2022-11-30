@@ -1,3 +1,4 @@
+import { ThirdwebProvider } from "@thirdweb-dev/react";
 import { type AppType } from "next/dist/shared/lib/utils";
 import type { Chain } from "wagmi";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
@@ -38,10 +39,12 @@ const client = createClient({
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <>
-      <WagmiConfig client={client}>
-        <NextHead />
-        <Component {...pageProps} />
-      </WagmiConfig>
+      <ThirdwebProvider desiredChainId={undefined}>
+        <WagmiConfig client={client}>
+          <NextHead />
+          <Component {...pageProps} />
+        </WagmiConfig>
+      </ThirdwebProvider>
     </>
   );
 };
