@@ -1,4 +1,5 @@
 import { MediaRenderer } from "@thirdweb-dev/react";
+import Link from "next/link";
 import type { FC } from "react";
 
 export interface CardProps {
@@ -8,7 +9,7 @@ export interface CardProps {
   btnText: string;
   traits: Traits;
   disabled?: boolean;
-  btnAction: () => void;
+  tokenId: string;
 }
 
 export type Traits = {
@@ -21,8 +22,7 @@ const Card: FC<CardProps> = ({
   image,
   traits,
   btnText,
-  disabled,
-  btnAction,
+  tokenId,
 }) => {
   return (
     <div className="card w-auto rounded-md bg-neutral-regular transition duration-300 hover:ring-2 hover:ring-primary hover:ring-offset-4 hover:ring-offset-neutral-dark">
@@ -35,16 +35,15 @@ const Card: FC<CardProps> = ({
           <span className="text-yellow-600">{traits.stamina}</span>
           <span className="text-red-600">{traits.strength}</span>
         </div>
-        <h2 className="card-title text-white">{title}</h2>
-        <p className="text-neutral-light">{description}</p>
+        <h2 className="card-title truncate text-white">{title}</h2>
+        <p className="truncate text-neutral-light">{description}</p>
         <div className="card-actions justify-end">
-          <button
-            disabled={disabled}
-            onClick={() => btnAction()}
+          <Link
             className="btn w-full bg-neutral-dark text-primary hover:border-neutral-light"
+            href={`/station/${tokenId}`}
           >
             {btnText}
-          </button>
+          </Link>
         </div>
       </div>
     </div>

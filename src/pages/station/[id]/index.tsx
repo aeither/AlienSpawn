@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
-import CardList from "../../../components/CardList";
-import Navbar from "../../../components/Navbar";
 import { useRouter } from "next/router";
+import CardDetail from "../../../components/CardDetail";
+import Navbar from "../../../components/Navbar";
 const Station: NextPage = () => {
   const {
     query: { id },
@@ -23,7 +23,7 @@ const Station: NextPage = () => {
             </div>
             <div>Image</div>
           </div>
-          <CardList />
+          <CardDetail />
         </div>
       </main>
     </>

@@ -72,10 +72,8 @@ const CardList: FC = () => {
               description: metadata.description || "",
               image: metadata.image || "",
               traits: traits,
-              btnText: "Play",
-              btnAction: async () => {
-                console.log("btn click!");
-              },
+              btnText: "Details",
+              tokenId: nft.tokenId,
             };
 
             return (
