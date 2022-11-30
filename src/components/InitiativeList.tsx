@@ -12,6 +12,7 @@ import {
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { useMintCustom } from "../hooks/alien";
 import { useDomLoaded } from "../hooks/dom";
+import { UploadIPFS } from "./UploadIPFS";
 
 const InitiativeList: FC = () => {
   const { domLoaded } = useDomLoaded();
@@ -44,6 +45,7 @@ const InitiativeList: FC = () => {
   if (domLoaded && isConnected)
     return (
       <>
+        <UploadIPFS />
         <button className="btn-primary btn" onClick={mintCustom}>
           click me
         </button>
