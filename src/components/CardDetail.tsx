@@ -17,20 +17,19 @@ interface Nfts {
 
 const CardDetail: FC = () => {
   const { address, isConnected } = useAccount();
-  const [nfts, setNfts] = useState<Nfts[]>();
+  const [txs, setTxs] = useState();
 
   const getNFTs = async () => {
     if (!address) return;
 
     const response = await fetch(
-      `/api/nfts?address=${address}&tokenId=${tokenId}`
+      `/api/txs?address=${address}&tokenId=${tokenId}`
     )
       .then((response) => response.json())
       .catch((err) => console.error(err));
 
     if (response) {
-      console.log(JSON.parse(response.data[0].metadata));
-      setNfts(response.data);
+      console.log(response.data);
     }
   };
 
