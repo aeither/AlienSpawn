@@ -5,12 +5,10 @@ import { InjectedConnector } from "wagmi/connectors/injected";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import NextHead from "../components/NextHead";
 import "../styles/globals.css";
-
-const chainId = 9000;
-const RPC_URL = "https://eth.bd.evmos.dev:8545";
+import { RPC_URL, CHAIN_ID } from "../utils/constants";
 
 const evmosTestnet: Chain = {
-  id: chainId,
+  id: CHAIN_ID,
   name: "Evmos Testnet",
   network: "test evmos",
   nativeCurrency: { name: "Test Evmos", symbol: "TEVMOS", decimals: 18 },

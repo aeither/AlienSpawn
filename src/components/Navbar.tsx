@@ -21,7 +21,7 @@ const Navbar: FC = () => {
         </a>
       </div>
       <div className="flex-none">
-        <ul className="px-2 hover:text-primary">
+        <ul className="px-2 text-neutral-light hover:text-primary">
           <li>
             <Link
               className={clsx(
@@ -39,11 +39,24 @@ const Navbar: FC = () => {
             <Link
               className={clsx(
                 "active:bg-transparent",
-                router.pathname === "/test" && "text-white"
+                router.pathname === "/spawn" && "text-white"
               )}
-              href={"/test"}
+              href={"/spawn"}
             >
-              Generate
+              Spawner
+            </Link>
+          </li>
+        </ul>
+        <ul className="px-2 text-neutral-light hover:text-primary">
+          <li>
+            <Link
+              className={clsx(
+                "active:bg-transparent",
+                router.pathname === "/station" && "text-white"
+              )}
+              href={"/station"}
+            >
+              Station
             </Link>
           </li>
         </ul>
