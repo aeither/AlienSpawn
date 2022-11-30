@@ -10,8 +10,11 @@ import {
   useProvider,
 } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
+import { useDomLoaded } from "../hooks/dom";
 
 const InitiativeList: FC = () => {
+  const { domLoaded } = useDomLoaded();
+
   const { address, isConnected } = useAccount();
   const { data, isError, isLoading } = useBalance({
     address: address,
@@ -23,15 +26,18 @@ const InitiativeList: FC = () => {
   const { chain, chains } = useNetwork();
   const provider = useProvider();
 
-  // if (isConnected)
-  //   return (
-  //     <>
-  //       <div>
-  //         Connected to {ensName ?? address}. with balance: {data?.formatted}
-  //         .connected to {chain?.name},with provider: {provider.network.name},
-  //       </div>
-  //     </>
-  //   );
+  if (domLoaded)
+    return (
+      <>
+        {isConnected && (
+          <div>
+            Connected to {ensName ?? address}. with balance: {data?.formatted}
+            .connected to {chain?.name},with provider: {provider.network.name},
+          </div>
+        )}
+      </>
+    );
+
   return <button onClick={() => connect()}>Connect Wallet</button>;
 };
 
