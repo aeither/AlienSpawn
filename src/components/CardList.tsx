@@ -1,7 +1,7 @@
 "use client";
 
 import type { FC } from "react";
-import type { CardProps } from "./Card";
+import type { CardProps, Traits } from "./Card";
 import Card from "./Card";
 import SkeletonCards from "./SkeletonCards";
 import { useEffect, useState } from "react";
@@ -29,7 +29,6 @@ const CardList: FC = () => {
       .catch((err) => console.error(err));
 
     if (response) {
-      console.log(JSON.parse(response.data[0].metadata));
       setNfts(response.data);
     }
   };
@@ -44,14 +43,36 @@ const CardList: FC = () => {
         <h2 className="text-xl font-bold text-white">Title</h2>
         <p className="text-neutral-light">Description</p>
       </div>
-      <div className="grid grid-cols-3 gap-8">
-        {/* {nfts ? (
+      <div className="grid grid-cols-4 gap-8">
+        {nfts ? (
           nfts.map((nft) => {
+            const metadata = JSON.parse(nft.metadata);
+
+            const traits: Traits = {
+              stamina: 0,
+              strength: 0,
+              health: 0,
+            };
+
+            metadata.traits.map(
+              ({
+                trait_type,
+                value,
+              }: {
+                trait_type: keyof Traits;
+                value: number;
+              }) => {
+                traits[trait_type] = value;
+              }
+            );
+            console.log("Traits: ", traits);
+
             const data: CardProps = {
-              title: String(nft.metadata.name) || "",
-              description: nft.metadata.description || "",
-              image: nft.metadata.image || "",
-              btnText: "Hatch",
+              title: metadata.name || "",
+              description: metadata.description || "",
+              image: metadata.image || "",
+              traits: traits,
+              btnText: "Play",
               btnAction: async () => {
                 console.log("btn click!");
               },
@@ -65,7 +86,7 @@ const CardList: FC = () => {
           })
         ) : (
           <SkeletonCards />
-        )} */}
+        )}
       </div>
     </div>
   );
