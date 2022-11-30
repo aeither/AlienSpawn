@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import type { FC } from "react";
+import ConnectButton from "./ConnectButton";
 
 const Navbar: FC = () => {
   const router = useRouter();
@@ -58,6 +59,11 @@ const Navbar: FC = () => {
             >
               Station
             </Link>
+          </li>
+        </ul>
+        <ul className="px-2 text-neutral-light hover:text-primary">
+          <li>
+            <ConnectButton />
           </li>
         </ul>
       </div>
