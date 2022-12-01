@@ -1,20 +1,13 @@
 "use client";
 
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import type { FC } from "react";
-import type { CardProps, Traits } from "./Card";
-import Card from "./Card";
-import SkeletonCards from "./SkeletonCards";
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
-import { useRouter } from "next/router";
-import dynamic from "next/dynamic";
+import NftCard from "./NftCard";
+import Table from "./Table";
 const DynamicReactJson = dynamic(import("react-json-view"), { ssr: false });
-
-interface Nfts {
-  tokenId: string;
-  owner: string;
-  metadata: string;
-}
 
 const CardDetail: FC = () => {
   const { address, isConnected } = useAccount();
@@ -51,42 +44,10 @@ const CardDetail: FC = () => {
     getNFTs();
   }, [address]);
 
-  const NftCard = () => {
-    if (!nft) return <></>;
-
-    const traits: Traits = {
-      stamina: 0,
-      strength: 0,
-      health: 0,
-    };
-
-    nft.traits.map(
-      ({ trait_type, value }: { trait_type: keyof Traits; value: number }) => {
-        traits[trait_type] = value;
-      }
-    );
-    console.log("Traits: ", traits);
-
-    const data: CardProps = {
-      title: nft.name || "",
-      description: nft.description || "",
-      image: nft.image || "",
-      traits: traits,
-      btnText: "",
-      tokenId: String(tokenId),
-    };
-
-    return (
-      <>
-        <Card {...data} />
-      </>
-    );
-  };
-
   return (
     <div className="grid w-full grid-cols-3 flex-row gap-28">
       <div className="col-span-1">
-        <NftCard />
+        <NftCard nft={nft} tokenId={String(tokenId)} />
       </div>
       <div className="col-span-2">
         {nft && (
@@ -103,6 +64,7 @@ const CardDetail: FC = () => {
           </div>
         )}
       </div>
+      {txs && <Table />}
     </div>
   );
 };
