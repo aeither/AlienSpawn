@@ -1,18 +1,6 @@
 "use client";
 
-import { FC, useMemo, useState } from "react";
-import {
-  useAccount,
-  useBalance,
-  useConnect,
-  useEnsName,
-  useNetwork,
-  useProvider,
-} from "wagmi";
-import { InjectedConnector } from "wagmi/connectors/injected";
-import { useMintCustom } from "../hooks/alien";
-import { useDomLoaded } from "../hooks/dom";
-import { UploadIPFS } from "./UploadIPFS";
+import type { FC } from "react";
 
 interface MintFormProps {
   onSubmit: any;

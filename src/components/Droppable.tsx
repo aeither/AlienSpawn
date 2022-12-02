@@ -6,12 +6,15 @@ export function Droppable(props: any) {
   const { isOver, setNodeRef } = useDroppable({
     id: "droppable",
   });
-  const style = {
-    color: isOver ? "green" : undefined,
-  };
 
   return (
-    <div ref={setNodeRef} className={clsx("bg-neutral-regular rounded-md p-8", isOver && "border border-primary")}>
+    <div
+      ref={setNodeRef}
+      className={clsx(
+        "rounded-md bg-neutral-regular p-8",
+        isOver && "border border-primary"
+      )}
+    >
       {props.children}
     </div>
   );

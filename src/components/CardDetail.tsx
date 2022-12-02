@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import NftCard from "./NftCard";
 import SkeletonCards from "./SkeletonCards";
-import Table, { Tx } from "./Table";
+import type { Tx } from "./Table";
+import Table from "./Table";
 const DynamicReactJson = dynamic(import("react-json-view"), { ssr: false });
 
 const CardDetail: FC = () => {

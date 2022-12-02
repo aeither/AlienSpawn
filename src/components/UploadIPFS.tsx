@@ -1,11 +1,6 @@
-import { ChangeEvent, useState } from "react";
+import type { ChangeEvent } from "react";
+import { useState } from "react";
 import { useUploadIPFS } from "../hooks/upload";
-
-interface Metadata {
-  name?: string;
-  description?: string;
-  image?: File;
-}
 
 export const UploadIPFS = () => {
   const [image, setImage] = useState<File>();

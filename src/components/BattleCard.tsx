@@ -1,5 +1,4 @@
 import { MediaRenderer } from "@thirdweb-dev/react";
-import Link from "next/link";
 import type { FC } from "react";
 
 export interface CardProps {

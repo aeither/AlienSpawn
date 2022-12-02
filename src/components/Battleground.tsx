@@ -1,7 +1,8 @@
 "use client";
 
 import { DndContext } from "@dnd-kit/core";
-import { FC, useEffect, useState } from "react";
+import type { FC} from "react";
+import { useEffect, useState } from "react";
 import { useAccount, useConnect } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { useDomLoaded } from "../hooks/dom";
