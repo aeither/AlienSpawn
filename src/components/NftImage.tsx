@@ -15,6 +15,7 @@ interface NftImageProps {
 
 const NftImage: FC<NftImageProps> = ({ ipfsUrl, setIpfsUrl }) => {
   const [bgColor, setBgColor] = useState("blue");
+  const [pngData, setPngData] = useState<string>();
 
   const ref = useRef<HTMLDivElement>(null);
   const { uploadIPFS } = useUploadIPFS();
@@ -52,8 +53,23 @@ const NftImage: FC<NftImageProps> = ({ ipfsUrl, setIpfsUrl }) => {
     setBgColor(item || "cyan");
   };
 
+  function handleChange(event: any) {
+    const file = event.target.files[0];
+
+    const reader = new FileReader();
+    reader.onload = function () {
+      if (reader.result) {
+        setPngData(String(reader.result));
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
   return (
     <>
+      <div>
+        <input type="file" onChange={handleChange} />
+      </div>
       <button onClick={randomBgColor} className="btn">
         Change Color
       </button>
@@ -61,8 +77,13 @@ const NftImage: FC<NftImageProps> = ({ ipfsUrl, setIpfsUrl }) => {
         <div className={clsx(`h-64 w-64`, `${bgColor} bg-`)}>
           <div className="relative h-full w-full">
             <div className="absolute bottom-0 h-full w-full">
-              <SVG />
-              {/* <HairNormal color={"#1aa212"} /> */}
+              {pngData ? (
+                <div className="absolute h-full w-full">
+                  <img className="bg-fill h-full w-full" src={pngData} />
+                </div>
+              ) : (
+                <SVG />
+              )}
             </div>
           </div>
         </div>
