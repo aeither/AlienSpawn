@@ -6,6 +6,7 @@ import type { FC } from "react";
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import NftCard from "./NftCard";
+import SkeletonCards from "./SkeletonCards";
 import Table, { Tx } from "./Table";
 const DynamicReactJson = dynamic(import("react-json-view"), { ssr: false });
 
@@ -51,7 +52,7 @@ const CardDetail: FC = () => {
           <NftCard nft={nft} tokenId={String(tokenId)} />
         </div>
         <div className="col-span-2">
-          {nft && (
+          {nft ? (
             <div className="flex flex-col">
               <h2 className="text-xl font-bold text-white">{nft.name}</h2>
               <p className="text-neutral-light">{nft.description}</p>
@@ -63,10 +64,14 @@ const CardDetail: FC = () => {
                 />
               </div>
             </div>
+          ) : (
+            <div className="flex flex-col">
+              <SkeletonCards />
+            </div>
           )}
         </div>
       </div>
-      <div className="flex flex-col p-4 bg-neutral-regular rounded-md">
+      <div className="flex flex-col rounded-md bg-neutral-regular p-4">
         <div className="w-full">{txs && <Table txs={txs} />}</div>
       </div>
     </>
