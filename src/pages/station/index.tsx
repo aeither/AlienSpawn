@@ -11,10 +11,10 @@ const Station: NextPage = () => {
           <div className="flex w-full items-center justify-between pb-12">
             <div>
               <h1 className="text-5xl font-extrabold italic tracking-tight text-white sm:text-[5rem]">
-                Alien Station
+                Station
               </h1>
               <p className="pt-4 text-lg text-neutral-light">
-                Nocode tool for minting NFT game assets.
+                Prepare your squad of aliens for the battle.
               </p>
             </div>
             <div>Image</div>

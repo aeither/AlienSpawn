@@ -1,8 +1,8 @@
 import { type NextPage } from "next";
-import InitiativeList from "../components/InitiativeList";
+import Battleground from "../components/Battleground";
 import Navbar from "../components/Navbar";
 
-const Home: NextPage = () => {
+const Invade: NextPage = () => {
   return (
     <>
       <Navbar />
@@ -11,19 +11,19 @@ const Home: NextPage = () => {
           <div className="flex w-full items-center justify-between pb-12">
             <div>
               <h1 className="text-5xl font-extrabold italic tracking-tight text-white sm:text-[5rem]">
-                <span className="text-primary">Alien</span> Spawn
+                Space
               </h1>
               <p className="pt-4 text-lg text-neutral-light">
-                A dynamic NFT battle game on Evmos.
+                Dominate the space by eliminating other aliens.
               </p>
             </div>
             <div>Image</div>
           </div>
-          <InitiativeList />
+          <Battleground />
         </div>
       </main>
     </>
   );
 };
 
-export default Home;
+export default Invade;

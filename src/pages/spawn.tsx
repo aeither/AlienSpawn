@@ -1,5 +1,4 @@
 import { type NextPage } from "next";
-import InitiativeList from "../components/InitiativeList";
 import Minter from "../components/Minter";
 import Navbar from "../components/Navbar";
 
@@ -12,10 +11,10 @@ const Spawn: NextPage = () => {
           <div className="flex w-full items-center justify-between pb-12">
             <div>
               <h1 className="text-5xl font-extrabold italic tracking-tight text-white sm:text-[5rem]">
-                <span className="text-primary">Alien</span> Spawn
+                Spawner
               </h1>
               <p className="pt-4 text-lg text-neutral-light">
-                Nocode tool for minting NFT game assets.
+                Generate new aliens with unique stats.
               </p>
             </div>
             <div>Image</div>

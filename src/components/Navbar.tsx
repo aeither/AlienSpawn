@@ -63,6 +63,19 @@ const Navbar: FC = () => {
         </ul>
         <ul className="px-2 text-neutral-light hover:text-primary">
           <li>
+            <Link
+              className={clsx(
+                "active:bg-transparent",
+                router.pathname === "/invade" && "text-white"
+              )}
+              href={"/invade"}
+            >
+              Space
+            </Link>
+          </li>
+        </ul>
+        <ul className="px-2 text-neutral-light hover:text-primary">
+          <li>
             <ConnectButton />
           </li>
         </ul>
