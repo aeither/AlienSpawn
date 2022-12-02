@@ -20,9 +20,9 @@ const Minter: FC = () => {
   });
 
   const { register, handleSubmit } = useForm();
-  const [health, setHealth] = useState("20");
-  const [stamina, setStamina] = useState("20");
-  const [strength, setStrength] = useState("20");
+  const [health, setHealth] = useState("60");
+  const [stamina, setStamina] = useState("40");
+  const [strength, setStrength] = useState("50");
   const [name, setName] = useState("Alien X");
   const [ipfsUrl, setIpfsUrl] = useState<string>();
 
@@ -76,12 +76,14 @@ const Minter: FC = () => {
   if (domLoaded && isConnected)
     return (
       <>
-        <UploadIPFS />
-        <button className="btn-primary btn" onClick={mintCustom}>
-          click me
-        </button>
-        <MintForm {...mintFormProps} />
-        <NftImage {...imageFormProps} />
+        <div className="grid w-full grid-cols-2">
+          <div>
+            <NftImage {...imageFormProps} />
+          </div>
+          <div>
+            <MintForm {...mintFormProps} />
+          </div>
+        </div>
       </>
     );
 

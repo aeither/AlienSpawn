@@ -32,19 +32,24 @@ const MintForm: FC<MintFormProps> = ({
   setName,
 }) => {
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-        <input
-          type="text"
-          {...register("name")}
-          placeholder="Alien Z"
-          value={name}
-          onChange={(e) => {
-            console.log(e.target.value);
-            setName(e.target.value);
-          }}
-          className="input w-full max-w-xs"
-        />
+    <div className="border-md rounded-md border border-neutral-medium p-8">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-12">
+        <div className="flex flex-col gap-4">
+          <label htmlFor="" className="text-xl text-neutral-light">
+            Name
+          </label>
+          <input
+            type="text"
+            {...register("name")}
+            placeholder="Alien Z"
+            value={name}
+            onChange={(e) => {
+              console.log(e.target.value);
+              setName(e.target.value);
+            }}
+            className="input w-full max-w-xs bg-neutral-regular text-neutral-light"
+          />
+        </div>
         <p className="text-neutral-light">
           Assignable points: {assignablePoints}
         </p>
@@ -96,7 +101,7 @@ const MintForm: FC<MintFormProps> = ({
           />
           <span>{strength}</span>
         </div>
-        <input type="submit" className="btn-primary btn" />
+        <input type="submit" value="Mint" className="btn-primary btn" />
       </form>
     </div>
   );
