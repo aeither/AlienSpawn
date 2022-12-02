@@ -5,7 +5,7 @@ import { useUploadIPFS } from "../hooks/upload";
 export const UploadIPFS = () => {
   const [image, setImage] = useState<File>();
 
-  /** Upload to IPFS and get Metadata */
+  /** Upload to IPFS */
   const { uploadIPFS } = useUploadIPFS();
 
   const saveImage = (e: ChangeEvent<HTMLInputElement>) => {

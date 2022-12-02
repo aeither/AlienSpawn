@@ -1,6 +1,6 @@
 "use client";
 
-import type { FC} from "react";
+import type { FC } from "react";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAccount, useConnect } from "wagmi";
@@ -8,6 +8,7 @@ import { InjectedConnector } from "wagmi/connectors/injected";
 import { useMintCustom } from "../hooks/alien";
 import { useDomLoaded } from "../hooks/dom";
 import MintForm from "./MintForm";
+import NftImage from "./NftImage";
 import { UploadIPFS } from "./UploadIPFS";
 
 const Minter: FC = () => {
@@ -22,6 +23,8 @@ const Minter: FC = () => {
   const [health, setHealth] = useState("20");
   const [stamina, setStamina] = useState("20");
   const [strength, setStrength] = useState("20");
+  const [name, setName] = useState("Alien X");
+  const [ipfsUrl, setIpfsUrl] = useState<string>();
 
   const assignablePoints = useMemo(() => {
     return 150 - +health - +stamina - +strength;
@@ -61,6 +64,13 @@ const Minter: FC = () => {
     strength,
     handleSubmit,
     register,
+    name,
+    setName,
+  };
+
+  const imageFormProps = {
+    ipfsUrl,
+    setIpfsUrl,
   };
 
   if (domLoaded && isConnected)
@@ -71,6 +81,7 @@ const Minter: FC = () => {
           click me
         </button>
         <MintForm {...mintFormProps} />
+        <NftImage {...imageFormProps} />
       </>
     );
 

@@ -13,6 +13,8 @@ interface MintFormProps {
   strength: string;
   handleSubmit: any;
   register: any;
+  name: string;
+  setName: any;
 }
 
 const MintForm: FC<MintFormProps> = ({
@@ -26,13 +28,21 @@ const MintForm: FC<MintFormProps> = ({
   strength,
   handleSubmit,
   register,
+  name,
+  setName,
 }) => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <input
           type="text"
+          {...register("name")}
           placeholder="Alien Z"
+          value={name}
+          onChange={(e) => {
+            console.log(e.target.value);
+            setName(e.target.value);
+          }}
           className="input w-full max-w-xs"
         />
         <p className="text-neutral-light">
