@@ -27,7 +27,7 @@ const Card: FC<CardProps> = ({
   return (
     <div className="card w-auto rounded-md bg-neutral-regular ring-4 ring-transparent ring-offset-8 ring-offset-transparent transition duration-300 hover:ring-2 hover:ring-primary hover:ring-offset-4 hover:ring-offset-neutral-dark">
       <figure>
-        <MediaRenderer src={image} alt={"nft"} />
+        <MediaRenderer className="w-full" src={image} alt={"nft"} />
       </figure>
       <div className="card-body">
         <div className="flex justify-between">
