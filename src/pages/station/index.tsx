@@ -17,7 +17,9 @@ const Station: NextPage = () => {
                 Prepare your squad of aliens for the battle.
               </p>
             </div>
-            <div>Image</div>
+            <div>
+              <img src="svgs/isometric04.svg" alt="" className="w-48" />
+            </div>
           </div>
           <CardList />
         </div>

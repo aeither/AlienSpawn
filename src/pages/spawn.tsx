@@ -17,7 +17,9 @@ const Spawn: NextPage = () => {
                 Generate new aliens with unique stats.
               </p>
             </div>
-            <div>Image</div>
+            <div>
+              <img src="svgs/isometric01.svg" alt="" className="w-48" />
+            </div>
           </div>
           <Minter />
         </div>

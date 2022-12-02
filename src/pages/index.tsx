@@ -17,7 +17,9 @@ const Home: NextPage = () => {
                 A dynamic NFT battle game on Evmos.
               </p>
             </div>
-            <div>Image</div>
+            <div>
+              <img src="svgs/isometric03.svg" alt="" className="w-48" />
+            </div>
           </div>
           <InitiativeList />
         </div>

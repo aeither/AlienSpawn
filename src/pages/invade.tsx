@@ -17,7 +17,9 @@ const Invade: NextPage = () => {
                 Dominate the space by eliminating other aliens.
               </p>
             </div>
-            <div>Image</div>
+            <div>
+              <img src="svgs/isometric02.svg" alt="" className="w-48" />
+            </div>
           </div>
           <Battleground />
         </div>
