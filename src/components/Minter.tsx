@@ -9,7 +9,6 @@ import { useMintCustom } from "../hooks/alien";
 import { useDomLoaded } from "../hooks/dom";
 import MintForm from "./MintForm";
 import NftImage from "./NftImage";
-import { UploadIPFS } from "./UploadIPFS";
 
 const Minter: FC = () => {
   const { domLoaded } = useDomLoaded();
@@ -37,13 +36,16 @@ const Minter: FC = () => {
       return;
     } else {
       console.log(data);
+      mintCustom();
     }
   };
   const { write: mint } = useMintCustom({
     recipient: address || "0x123",
-    image: "ipfs://",
-    name: "Alien",
-    description: "Alien Spawn is a fun Evmos game",
+    image:
+      ipfsUrl ||
+      "https://gateway.ipfscdn.io/ipfs/Qmcc6mA7CUpJUGfAMGxrnajHhLYtKTg4oLLUmHYhQDczkM/alien.png",
+    name: name,
+    description: "Alien Spawn is a fun game on Evmos",
     health: +health,
     stamina: +stamina,
     strength: +strength,
@@ -76,7 +78,7 @@ const Minter: FC = () => {
   if (domLoaded && isConnected)
     return (
       <>
-        <div className="grid w-full grid-cols-2">
+        <div className="grid w-full grid-cols-2 gap-12">
           <div>
             <NftImage {...imageFormProps} />
           </div>

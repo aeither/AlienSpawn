@@ -5,7 +5,7 @@ import { toBlob } from "html-to-image";
 import type { FC } from "react";
 import { useState } from "react";
 import { useCallback, useRef } from "react";
-import SVG from "../content/alien01";
+import { alien } from "../content/index";
 import { useUploadIPFS } from "../hooks/upload";
 
 interface NftImageProps {
@@ -14,13 +14,14 @@ interface NftImageProps {
 }
 
 const NftImage: FC<NftImageProps> = ({ ipfsUrl, setIpfsUrl }) => {
-  const [bgColor, setBgColor] = useState("blue");
+  const [bgColor, setBgColor] = useState("bg-blue-400");
   const [pngData, setPngData] = useState<string>();
+  const [characterId, setCharacterId] = useState(1);
 
   const ref = useRef<HTMLDivElement>(null);
   const { uploadIPFS } = useUploadIPFS();
 
-  const onButtonClick = useCallback(async () => {
+  const convertAndUploadImage = useCallback(async () => {
     if (ref.current === null) {
       return;
     }
@@ -48,12 +49,18 @@ const NftImage: FC<NftImageProps> = ({ ipfsUrl, setIpfsUrl }) => {
       "bg-pink-400",
     ];
     const item = colors[Math.floor(Math.random() * colors.length)];
-    console.log("🚀 ~ file: NftImage.tsx:40 ~ randomBgColor ~ item", item);
 
     setBgColor(item || "cyan");
   };
 
-  function handleChange(event: any) {
+  const randomCharacter = () => {
+    const items = [1, 2, 3, 4, 5];
+    const item = items[Math.floor(Math.random() * items.length)];
+
+    setCharacterId(item || 1);
+  };
+
+  function setUploadedImage(event: any) {
     const file = event.target.files[0];
 
     const reader = new FileReader();
@@ -66,15 +73,28 @@ const NftImage: FC<NftImageProps> = ({ ipfsUrl, setIpfsUrl }) => {
   }
 
   return (
-    <>
-      <div>
-        <input type="file" onChange={handleChange} />
+    <div className="border-md flex h-full flex-col justify-between rounded-md border border-neutral-medium p-12">
+      <div className="flex flex-col gap-4">
+        <label htmlFor="" className="text-xl text-neutral-light">
+          Choose or upload
+        </label>
+        <input
+          type={"file"}
+          className="file-input w-full max-w-xs bg-neutral-regular"
+          onChange={setUploadedImage}
+          placeholder="upload file"
+        />
       </div>
-      <button onClick={randomBgColor} className="btn">
-        Change Color
-      </button>
-      <div ref={ref}>
-        <div className={clsx(`h-64 w-64`, `${bgColor} bg-`)}>
+      <div className="flex w-full justify-start gap-4">
+        <button onClick={randomBgColor} className="btn">
+          Change Color
+        </button>
+        <button onClick={randomCharacter} className="btn">
+          Change Character
+        </button>
+      </div>
+      <div ref={ref} className="w-fit">
+        <div className={clsx(`h-64 w-64`, `${bgColor}`)}>
           <div className="relative h-full w-full">
             <div className="absolute bottom-0 h-full w-full">
               {pngData ? (
@@ -82,7 +102,7 @@ const NftImage: FC<NftImageProps> = ({ ipfsUrl, setIpfsUrl }) => {
                   <img className="bg-fill h-full w-full" src={pngData} />
                 </div>
               ) : (
-                <SVG />
+                alien({ alienId: characterId })
               )}
             </div>
           </div>
@@ -91,11 +111,11 @@ const NftImage: FC<NftImageProps> = ({ ipfsUrl, setIpfsUrl }) => {
       {ipfsUrl ? (
         <p className="truncate">{ipfsUrl}</p>
       ) : (
-        <button onClick={onButtonClick} className="btn">
+        <button onClick={convertAndUploadImage} className="btn w-full">
           Upload
         </button>
       )}
-    </>
+    </div>
   );
 };
 

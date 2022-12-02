@@ -32,7 +32,7 @@ const MintForm: FC<MintFormProps> = ({
   setName,
 }) => {
   return (
-    <div className="border-md rounded-md border border-neutral-medium p-8">
+    <div className="border-md rounded-md border border-neutral-medium p-12">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-12">
         <div className="flex flex-col gap-4">
           <label htmlFor="" className="text-xl text-neutral-light">
