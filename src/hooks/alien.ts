@@ -19,19 +19,28 @@ export type UnstakeArgs = {
   daoVaultAddress?: `0x${string}`;
 };
 
-export const useMintCustom = ({}: MintCustomArgs) => {
+export const useMintCustom = ({
+  recipient,
+  image,
+  name,
+  description,
+  health,
+  stamina,
+  strength,
+}: MintCustomArgs) => {
   const { config, error: prepareError } = usePrepareContractWrite({
     address: alienAddress,
     abi: ALIEN_ABI,
     functionName: "safeMintCustom",
     args: [
-      "0xEE465b1269F468BfBD2f3C27e8E60CccDd9200eE",
-      "https://bafkreicnxxgsx6lrfg2qpxclchexvgfktrkpjff3udyqatmblrq3lkkh2q.ipfs.nftstorage.link/",
-      "Mars",
-      "Alien of Mars",
-      BigNumber.from(80),
-      BigNumber.from(80),
-      BigNumber.from(80),
+      recipient,
+      // "https://bafkreicnxxgsx6lrfg2qpxclchexvgfktrkpjff3udyqatmblrq3lkkh2q.ipfs.nftstorage.link/",
+      image,
+      name,
+      description,
+      BigNumber.from(health * 2),
+      BigNumber.from(stamina),
+      BigNumber.from(strength),
     ],
   });
 

@@ -1,6 +1,7 @@
 "use client";
 
-import { FC, useMemo, useState } from "react";
+import type { FC} from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAccount, useConnect } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
@@ -17,7 +18,7 @@ const Minter: FC = () => {
     connector: new InjectedConnector(),
   });
 
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const [health, setHealth] = useState("20");
   const [stamina, setStamina] = useState("20");
   const [strength, setStrength] = useState("20");
@@ -26,9 +27,14 @@ const Minter: FC = () => {
     return 150 - +health - +stamina - +strength;
   }, [health, stamina, strength]);
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     // Do something with the form data
-    console.log(data);
+    if (assignablePoints !== 0) {
+      alert("assign all points");
+      return;
+    } else {
+      console.log(data);
+    }
   };
   const { write: mint } = useMintCustom({
     recipient: address || "0x123",
