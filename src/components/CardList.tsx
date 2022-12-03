@@ -38,8 +38,8 @@ const CardList: FC = () => {
       <div className="grid w-full grid-cols-4 gap-8">
         {nfts ? (
           nfts.map((nft) => {
-            console.log("address", address);
             if (nft.owner !== address?.toLowerCase()) return;
+
             const metadata = JSON.parse(nft.metadata);
 
             const traits: Traits = {

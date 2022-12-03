@@ -11,7 +11,7 @@ export function Droppable(props: any) {
     <div
       ref={setNodeRef}
       className={clsx(
-        "rounded-md bg-neutral-regular p-8",
+        "h-fit m-8 rounded-md bg-neutral-regular p-4 flex-1 text-center ",
         isOver && "border border-primary"
       )}
     >
