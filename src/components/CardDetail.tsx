@@ -48,15 +48,15 @@ const CardDetail: FC = () => {
 
   return (
     <>
-      <div className="grid w-full grid-cols-3 flex-row gap-28">
+      <div className="grid w-full grid-cols-3 flex-row gap-24">
         <div className="col-span-1">
           <NftCard nft={nft} tokenId={String(tokenId)} />
         </div>
         <div className="col-span-2">
           {nft ? (
             <div className="flex flex-col">
-              <h2 className="text-xl font-bold text-white">{nft.name}</h2>
-              <p className="text-neutral-light">{nft.description}</p>
+              {/* <h2 className="text-xl font-bold text-white">{nft.name}</h2>
+              <p className="text-neutral-light">{nft.description}</p> */}
               <div className="rounded-md bg-[#272822] px-2 py-2">
                 <DynamicReactJson
                   enableClipboard={false}
@@ -72,7 +72,7 @@ const CardDetail: FC = () => {
           )}
         </div>
       </div>
-      <div className="flex flex-col rounded-md bg-neutral-regular p-4">
+      <div className="w-full flex flex-col rounded-md bg-neutral-regular p-4">
         <div className="w-full">{txs && <Table txs={txs} />}</div>
       </div>
     </>

@@ -1,5 +1,6 @@
 "use client";
 
+import BattleCard from "./BattleCard";
 import type { CardProps, Traits } from "./Card";
 import Card from "./Card";
 
@@ -30,7 +31,7 @@ const NftCard = ({ nft, tokenId }: { nft: any; tokenId: string }) => {
 
   return (
     <>
-      <Card {...data} />
+      <BattleCard {...data} />
     </>
   );
 };

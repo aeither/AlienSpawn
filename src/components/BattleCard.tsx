@@ -26,7 +26,7 @@ const BattleCard: FC<CardProps> = ({
   return (
     <div className="card w-auto rounded-md bg-neutral-regular transition duration-300 ">
       <figure>
-        <MediaRenderer className="w-full"  src={image} alt={"nft"} />
+        <MediaRenderer className="w-full" src={image} alt={"nft"} />
       </figure>
       <div className="card-body">
         <div className="flex justify-between">
