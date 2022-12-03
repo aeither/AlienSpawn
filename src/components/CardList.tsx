@@ -34,8 +34,8 @@ const CardList: FC = () => {
   }, [address]);
 
   return (
-    <div>
-      <div className="grid grid-cols-4 gap-8">
+    <>
+      <div className="grid w-full grid-cols-4 gap-8">
         {nfts ? (
           nfts.map((nft) => {
             console.log("address", address);
@@ -80,7 +80,7 @@ const CardList: FC = () => {
           <SkeletonCards />
         )}
       </div>
-    </div>
+    </>
   );
 };
 

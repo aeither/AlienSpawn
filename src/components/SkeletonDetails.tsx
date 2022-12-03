@@ -1,16 +1,16 @@
 import type { FC } from "react";
 
-const SkeletonCards: FC = () => {
+const SkeletonDetails: FC = () => {
   return (
     <>
-      {[1, 2, 3, 4].map((item) => {
+      {[1].map((item) => {
         return (
           <div
             key={item}
             role="status"
             className="max-w-sm animate-pulse rounded border border-gray-200 p-4 shadow dark:border-gray-700 md:p-6"
           >
-            <div className="mb-4 flex h-56 items-center justify-center rounded bg-gray-300 dark:bg-gray-700">
+            <div className="mb-4 flex h-80 items-center justify-center rounded bg-gray-300 dark:bg-gray-700">
               <svg
                 className="h-12 w-12 text-gray-200 dark:text-gray-600"
                 xmlns="http://www.w3.org/2000/svg"
@@ -39,4 +39,4 @@ const SkeletonCards: FC = () => {
   );
 };
 
-export default SkeletonCards;
+export default SkeletonDetails;
