@@ -18,6 +18,7 @@ contract Aliens is ERC721, ERC721URIStorage {
         uint256 stamina;
         uint256 strength;
         uint256 lastChecked;
+        uint256 points;
     }
 
     mapping(uint256 => AlienTraits) public traitsById;
@@ -48,7 +49,8 @@ contract Aliens is ERC721, ERC721URIStorage {
             health: 100,
             stamina: 20,
             strength: 30,
-            lastChecked: block.timestamp
+            lastChecked: block.timestamp,
+            points: 0
         });
         // Set the URI for the token to include all of the attributes
         _setTokenURI(tokenId, tokenURI(tokenId));
@@ -75,7 +77,8 @@ contract Aliens is ERC721, ERC721URIStorage {
             health: alienHealth,
             stamina: alienStamina,
             strength: alienStrength,
-            lastChecked: block.timestamp
+            lastChecked: block.timestamp,
+            points: 0
         });
         // Set the URI for the token to include all of the attributes
         _setTokenURI(tokenId, tokenURI(tokenId));
@@ -112,6 +115,7 @@ contract Aliens is ERC721, ERC721URIStorage {
             uint256 stamina_a,
             uint256 strength_a,
             ,
+            ,
 
         ) = alienStats(tokenIdA);
         uint256 boosted_stamina_a = stamina_a * random5(tokenIdA * 16);
@@ -122,6 +126,7 @@ contract Aliens is ERC721, ERC721URIStorage {
             uint256 health_b,
             uint256 stamina_b,
             uint256 strength_b,
+            ,
             ,
 
         ) = alienStats(tokenIdA);
@@ -139,18 +144,22 @@ contract Aliens is ERC721, ERC721URIStorage {
             boosted_strength_a;
 
         // check who has more health
+        uint256 winnerTokenId = type(uint256).max;
         uint256 defeatedTokenId = type(uint256).max;
         if (damaged_health_a > damaged_health_b) {
             defeatedTokenId = tokenIdB;
+            winnerTokenId = tokenIdA;
         } else if (damaged_health_b > damaged_health_a) {
             defeatedTokenId = tokenIdA;
+            winnerTokenId = tokenIdB;
         }
 
+        attainPoints(winnerTokenId, 5);
         // burn loser nft
-        if (defeatedTokenId != type(uint256).max) {
-            _burn(defeatedTokenId);
-            delete traitsById[defeatedTokenId];
-        }
+        // if (defeatedTokenId != type(uint256).max) {
+        //     _burn(defeatedTokenId);
+        //     delete traitsById[defeatedTokenId];
+        // }
     }
 
     // The following functions are overrides required by Solidity.
@@ -212,7 +221,8 @@ contract Aliens is ERC721, ERC721URIStorage {
             uint256,
             uint256,
             uint256,
-            string memory
+            string memory,
+            uint256
         )
     {
         return (
@@ -220,8 +230,17 @@ contract Aliens is ERC721, ERC721URIStorage {
             traitsById[_tokenId].stamina,
             traitsById[_tokenId].strength,
             traitsById[_tokenId].lastChecked,
-            traitsById[_tokenId].imageURI
+            traitsById[_tokenId].imageURI,
+            traitsById[_tokenId].points
         );
+    }
+
+    function attainPoints(uint256 _tokenId, uint256 points) private {
+        //update the attributes for the token
+        traitsById[_tokenId].points += points;
+        // set the token URI to the new values
+        _setTokenURI(_tokenId, tokenURI(_tokenId));
+        emitUpdate(_tokenId);
     }
 
     function updateURI(uint256 _tokenId, string memory ipfsImage) private {

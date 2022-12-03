@@ -346,6 +346,11 @@ export const ALIEN_ABI = [
         name: "",
         type: "string",
       },
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
     ],
     stateMutability: "view",
     type: "function",
@@ -543,6 +548,11 @@ export const ALIEN_ABI = [
       {
         internalType: "uint256",
         name: "lastChecked",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "points",
         type: "uint256",
       },
     ],
