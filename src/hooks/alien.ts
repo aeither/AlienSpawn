@@ -14,9 +14,9 @@ export type MintCustomArgs = {
   strength: number;
 };
 
-export type UnstakeArgs = {
-  tokenId: number;
-  daoVaultAddress?: `0x${string}`;
+export type BattleProps = {
+  attackerId: string;
+  opponentId: string;
 };
 
 export const useMintCustom = ({
@@ -34,7 +34,6 @@ export const useMintCustom = ({
     functionName: "safeMintCustom",
     args: [
       recipient,
-      // "https://bafkreicnxxgsx6lrfg2qpxclchexvgfktrkpjff3udyqatmblrq3lkkh2q.ipfs.nftstorage.link/",
       image,
       name,
       description,
@@ -42,6 +41,18 @@ export const useMintCustom = ({
       BigNumber.from(stamina),
       BigNumber.from(strength),
     ],
+  });
+
+  const { write, data, error: writeError, status } = useContractWrite(config);
+  return { write, data, writeError, prepareError, status };
+};
+
+export const useInvade = ({ attackerId, opponentId }: BattleProps) => {
+  const { config, error: prepareError } = usePrepareContractWrite({
+    address: alienAddress,
+    abi: ALIEN_ABI,
+    functionName: "invade",
+    args: [BigNumber.from(attackerId), BigNumber.from(opponentId)],
   });
 
   const { write, data, error: writeError, status } = useContractWrite(config);
