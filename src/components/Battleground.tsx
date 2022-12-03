@@ -1,6 +1,6 @@
 "use client";
 
-import type { FC } from "react";
+import { FC, useEffect } from "react";
 import { useState } from "react";
 import { useAccount, useConnect } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
@@ -14,7 +14,11 @@ const Battleground: FC = () => {
   const { address, isConnected } = useAccount();
   const [attackerId, setAttackerId] = useState<string>();
   const [opponentId, setOpponentId] = useState<string>();
-  const { write: invade } = useInvade({
+  const {
+    write: invade,
+    data,
+    status,
+  } = useInvade({
     attackerId: attackerId || "0",
     opponentId: opponentId || "1",
   });
@@ -25,12 +29,23 @@ const Battleground: FC = () => {
   const battle = async () => {
     if (attackerId === undefined || opponentId === undefined) {
       alert("select battle cards on both side");
-    } else {
+    } else if (invade) {
       console.log("battle", attackerId, opponentId);
-      invade && (await invade());
-      alert("Winner obtain 5 Points!!!")
+      await invade();
     }
   };
+
+  const waitTx = async () => {
+    if (data) {
+      const receipt = await data?.wait();
+      console.log("blockhash", receipt.blockHash);
+      alert("winner gains 5 points!!!");
+    }
+  };
+
+  useEffect(() => {
+    waitTx();
+  }, [data]);
 
   if (domLoaded && isConnected)
     return (
