@@ -1,27 +1,43 @@
-# Create T3 App
+# Alien Spawn
 
-This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
+![Home](https://user-images.githubusercontent.com/36173828/205486476-b6bbd59b-0b84-4eb0-a904-e84a880f032a.png)
 
-## What's next? How do I make an app with this?
+## DEMO
 
-We try to keep this project as simple as possible, so you can start with the most basic configuration and then move on to more advanced configuration.
+https://alien-spawn.vercel.app/
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Overview
 
-- [Next-Auth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [TailwindCSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+Alien Spawn is a no-code, dynamic NFT battle game built on Evmos. Users can mint their NFT from the configurator. The users can change the background color of the character and edit the statistic with assignable points to health, stamina, or strength to fit their gaming style. The user can also choose to upload his own 1:1 image to mint a truly unique NFT. 
 
-We also [roll our own docs](https://create.t3.gg) with some summary information and links to the respective documentation.
+![Spawner](https://user-images.githubusercontent.com/36173828/205486499-6dd060ea-4662-4bfe-8ef7-30d769fd64e7.png)
 
-Also checkout these awesome tutorials on `create-t3-app`.
+Users can now explore a list of NFTs on the Station page, complete with statistics and transaction history, thanks to the Covalent API. The backend fetches all the token ids with /nft_token_ids and then uses them to get the nft transactions with /nft_transactions and metadata with /nft_metadata.
 
-- [Build a Blog With the T3 Stack - tRPC, TypeScript, Next.js, Prisma & Zod](https://www.youtube.com/watch?v=syEWlxVFUrY)
-- [Build a Live Chat Application with the T3 Stack - TypeScript, Tailwind, tRPC](https://www.youtube.com/watch?v=dXRRY37MPuk)
-- [Build a full stack app with create-t3-app](https://www.nexxel.dev/blog/ct3a-guestbook)
-- [A first look at create-t3-app](https://dev.to/ajcwebdev/a-first-look-at-create-t3-app-1i8f)
+![Station](https://user-images.githubusercontent.com/36173828/205486624-776eeb97-8821-4807-b509-c05897087b1f.png)
 
-## How do I deploy this?
+![NFTDetails](https://user-images.githubusercontent.com/36173828/205486520-d8213735-3f5b-4c90-b69b-5d6fa1f49f89.png)
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+For the battle, the user can use the intuitive drag-and-drop page to select one of his aliens and an opponent to attack. If the user finished the incursion successfully, his NFT would gain improvement points.
+
+![Space](https://user-images.githubusercontent.com/36173828/205486509-69ae3d14-4708-43a3-9d1a-91e605ca8106.png)
+
+## Motivation
+
+Increase user involvement in the creation process by encouraging customer participation and ownership through configurable options. Known as the "IKEA EFFECT," this not only increases user engagement but also leads to increased user satisfaction and loyalty. Help foster a sense of community and connection with the project by allowing users to contribute and feel invested in its success.
+
+
+## Tech Stack
+
+Frontend: Typescript, React, NextJS, TailwindCSS, Covalent
+
+Smart Contract: Solidity, Remix
+
+## Future plans
+Making the NFTS configurator a tool for creators and projects to deploy their own contract and use it on their own dashboard.
+
+Improve the game mechanics.
+
+Add a 3 vs. 3 battle mode.
+
+Add unique abilities to each NFT.
