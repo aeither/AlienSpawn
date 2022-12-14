@@ -20,7 +20,7 @@ const CardDetail: FC = () => {
   } = useRouter();
 
   const getNFTs = async () => {
-    if (!address) return;
+    if (!address || !tokenId) return;
 
     const response = await fetch(
       `/api/txs?address=${address}&tokenId=${tokenId}`
@@ -44,7 +44,7 @@ const CardDetail: FC = () => {
 
   useEffect(() => {
     getNFTs();
-  }, [address]);
+  }, [address, tokenId]);
 
   return (
     <>
